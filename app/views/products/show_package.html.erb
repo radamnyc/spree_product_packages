@@ -1,0 +1,60 @@
+<div class="col-md-4" data-hook="product_left_part">
+  <div data-hook="package_left_part_wrap">
+    <h1 class="taxon-title"><%= @taxon.name %></h1>
+    <div id="package_image" data-hook="package_image">
+      <div id="main-image" class="panel panel-default" data-hook>
+        <div class="panel-body text-center">
+          <%= image_tag(@taxon.icon(:display)) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% @body_id = 'package-details' %>
+
+<div id="cart-form" data-hook="cart_form">
+  <%= form_for :order, :url => populate_from_package_path do |f| %>
+    <span class="input-group-btn">
+              <%= button_tag :class => 'btn btn-success', :id => 'add-to-cart-button', :type => :submit do %>
+                <%= Spree.t(:add_package_to_cart) %>
+              <% end %>
+    </span>
+    <%= hidden_field_tag "product_count", @products.count %>
+    <% @products.each_with_index do |product, index| %>
+      <% cache [I18n.locale, current_currency, product] do %>
+        <% @product = product %>
+        <% @variants = product.variants_including_master.active(current_currency).includes([:option_values, :images]) %>
+        <% @product_properties = product.product_properties.includes(:property) %>
+
+        <div data-hook="product_show" itemscope itemtype="https://schema.org/Product">
+          <div class="col-md-8" data-hook="product_right_part">
+            <div data-hook="product_right_part_wrap">
+              <!-- <div id="product-images" data-hook="product_images">
+                <div id="main-image" class="panel panel-default" data-hook>
+                  <div class="panel-body text-center">
+                    <%#= small_image(@product, :itemprop => "image") %>
+                  </div>
+                </div>
+              </div> -->
+              <div id="product-description" data-hook="product_description">
+                <h4 class="product-title" itemprop="name"><%= product.name %></h4>
+
+                <div class="well" itemprop="description" data-hook="description">
+                  <%= product_description(product) rescue Spree.t(:product_has_no_description) %>
+                </div>
+
+                <div id="part_of_cart_form" data-hook="part_of_cart_form">
+                  <%= render :partial => 'multi_item_cart_form_element', locals: {index: index} %>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
