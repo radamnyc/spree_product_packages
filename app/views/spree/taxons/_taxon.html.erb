@@ -1,7 +1,4 @@
 <div class="taxon" data-hook="taxon">
-  <% if @taxon.show_products %>
-    <%= render partial: 'spree/shared/products', locals: { products: taxon_preview(taxon), taxon: taxon } %>
-  <% end  %>
   <h5 class="subtaxon-title"><%= link_to taxon.name, getUrlForTaxonDisplay(taxon), class: 'breadcrumbs' %></h5>
   <%= link_to(image_tag(taxon.icon(:display)), getUrlForTaxonDisplay(taxon)) unless taxon.icon_file_name.nil? %>
 </div>
