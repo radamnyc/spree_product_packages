@@ -1,17 +1,7 @@
 <div class="taxon" data-hook="taxon">
-  <% if taxon.children.size == 0 %>
-    <% if @taxon.show_products %>
-      <%= render partial: 'spree/shared/products', locals: { products: taxon_preview(taxon), taxon: taxon } %>
-    <% end  %>
-      <h5 class="subtaxon-title"><%= link_to taxon.name, show_package_path(taxon), class: 'breadcrumbs' %></h5>
-      <%= link_to(image_tag(taxon.icon(:display)), show_package_path(taxon)) unless taxon.icon_file_name.nil? %>
-  <% else %>
-    <% if @taxon.show_products %>
-      <h5 class="subtaxon-title"><%= link_to taxon.name, seo_url(taxon), class: 'breadcrumbs' %></h5>
-      <%= render partial: 'spree/shared/products', locals: { products: taxon_preview(taxon), taxon: taxon } %>
-    <% else %>
-      <h5 class="subtaxon-title"><%= link_to taxon.name, seo_url(taxon), class: 'breadcrumbs' %></h5>
-      <%= link_to(image_tag(taxon.icon(:display)), seo_url(taxon)) unless taxon.icon_file_name.nil? %>
-    <% end %>
-  <% end %>
+  <% if @taxon.show_products %>
+    <%= render partial: 'spree/shared/products', locals: { products: taxon_preview(taxon), taxon: taxon } %>
+  <% end  %>
+  <h5 class="subtaxon-title"><%= link_to taxon.name, getUrlForTaxonDisplay(taxon), class: 'breadcrumbs' %></h5>
+  <%= link_to(image_tag(taxon.icon(:display)), getUrlForTaxonDisplay(taxon)) unless taxon.icon_file_name.nil? %>
 </div>
