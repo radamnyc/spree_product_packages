@@ -1,0 +1,4 @@
+<div class="taxon" data-hook="taxon">
+  <h5 class="subtaxon-title"><%= link_to package.name, show_package_path(package), class: 'breadcrumbs' %></h5>
+  <%= link_to(image_tag(package.icon(:display)), show_package_path(package)) unless package.icon_file_name.nil? %>
+</div>

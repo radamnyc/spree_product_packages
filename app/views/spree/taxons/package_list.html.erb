@@ -1,0 +1,6 @@
+<h1 class="taxon-title">The Goods</h1>
+<div data-hook="the_goods_list">
+  <%# cache [I18n.locale, @taxon] do %>
+    <%= render partial: 'package', collection: @taxons%>
+  <%# end %>
+</div>
