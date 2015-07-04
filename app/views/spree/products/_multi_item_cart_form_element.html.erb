@@ -21,13 +21,6 @@
             </span>
           <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
         </div>
-
-        <% if @product.master.can_supply? %>
-          <link itemprop="availability" href="https://schema.org/InStock" />
-        <% elsif @product.variants.empty? %>
-          <br />
-          <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
-        <% end %>
       </div>
 
       <div class="add-to-cart">
@@ -35,11 +28,11 @@
         <div class="input-group">
           quantity
           <%= number_field_tag "quantity_#{index}", 1, :class => 'title form-control', :min => 1 %>
-           <span class="input-group-btn">
+           <!-- <span class="input-group-btn">
               <%#= button_tag :class => 'btn btn-success', :id => 'add-to-cart-button', :type => :submit do %>
                 <%#= Spree.t(:add_to_cart) %>
               <%# end %>
-            </span>
+            </span> -->
         </div>
       </div>
     </div>
