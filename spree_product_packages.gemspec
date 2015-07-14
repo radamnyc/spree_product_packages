@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_product_packages'
-  s.version     = '3.1.1'
+  s.version     = '3.1.2'
   s.summary     = 'A quick and dirty way to add packages of items to your cart in one click'
   s.description = 'Through the use of Taxons, a node that has no child taxons but has products can be listed as a package. by clicking the package you are taken to a page where you can add the entire set in one click. This is very rudementary at this point so any help improving is much appreciated.'
   s.required_ruby_version = '>= 2.0.0'
