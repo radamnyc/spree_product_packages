@@ -4,7 +4,7 @@
     <div id="package_image" data-hook="package_image">
       <div id="main-image" class="panel panel-default" data-hook>
         <div class="panel-body text-center">
-          <%= image_tag(@taxon.icon(:display)) %>
+          <%= image_tag(@taxon.icon(:display)) unless @taxon.icon_file_name.nil? %>
         </div>
       </div>
     </div>
